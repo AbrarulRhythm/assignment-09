@@ -1,0 +1,80 @@
+[
+    {
+        "toyId": 1,
+        "toyName": "Gigi the Giraffe",
+        "sellerName": "Toys R Us Local",
+        "sellerEmail": "contact@toysruslocal.com",
+        "price": 49.99,
+        "rating": 4.7,
+        "availableQuantity": 75,
+        "totalSold": 230,
+        "description": "A timeless set of colorful Lego bricks that encourages creativity and problem-solving. Kids can build anything they imagine, from houses to vehicles.",
+        "pictureURL": "https://i.ibb.co.com/chjrQGYG/toy.png",
+        "subCategory": "Building Blocks"
+    },
+    {
+        "toyId": 2,
+        "toyName": "Hot Wheels Super Track Set",
+        "sellerName": "Speedy Toys Hub",
+        "sellerEmail": "support@speedytoys.com",
+        "price": 34.99,
+        "rating": 4.5,
+        "availableQuantity": 60,
+        "totalSold": 180,
+        "description": "An exciting race track set with multiple loops and high-speed cars. Perfect for car lovers and thrill-seekers.",
+        "pictureURL": "https://i.ibb.co.com/JjXmqbkg/toy2.png",
+        "subCategory": "Vehicles"
+    },
+    {
+        "toyId": 3,
+        "toyName": "Barbie Dreamhouse Doll Set",
+        "sellerName": "Doll World Store",
+        "sellerEmail": "info@dollworld.com",
+        "price": 89.99,
+        "rating": 4.8,
+        "availableQuantity": 40,
+        "totalSold": 150,
+        "description": "A luxurious dreamhouse with lights, sounds, and accessories for endless storytelling fun with Barbie dolls.",
+        "pictureURL": "https://i.ibb.co.com/2HRFqVG/toy3.png",
+        "subCategory": "Dolls"
+    },
+    {
+        "toyId": 4,
+        "toyName": "NERF Elite Blaster",
+        "sellerName": "Action Zone",
+        "sellerEmail": "contact@actionzone.com",
+        "price": 59.99,
+        "rating": 4.6,
+        "availableQuantity": 55,
+        "totalSold": 210,
+        "description": "A powerful NERF blaster with long-range foam darts and quick reloading for action-packed playtime.",
+        "pictureURL": "https://i.ibb.co.com/Z6XSRHpW/toy4.png",
+        "subCategory": "Action Toys"
+    },
+    {
+        "toyId": 5,
+        "toyName": "Play-Doh Mega Fun Pack",
+        "sellerName": "Creative Hands",
+        "sellerEmail": "sales@creativehands.com",
+        "price": 24.99,
+        "rating": 4.4,
+        "availableQuantity": 90,
+        "totalSold": 320,
+        "description": "A colorful Play-Doh set that encourages kids to mold, shape, and create fun figures with their imagination.",
+        "pictureURL": "https://i.ibb.co.com/G4sXMQ3Y/toy5.png",
+        "subCategory": "Creative Toys"
+    },
+    {
+        "toyId": 6,
+        "toyName": "RC Monster Truck",
+        "sellerName": "Remote Toys BD",
+        "sellerEmail": "sales@remotetoysbd.com",
+        "price": 69.99,
+        "rating": 4.9,
+        "availableQuantity": 35,
+        "totalSold": 195,
+        "description": "A rugged remote-control monster truck with off-road tires and shock-resistant build for adventurous kids.",
+        "pictureURL": "https://i.ibb.co.com/238tKVXj/toy6-1.png",
+        "subCategory": "Remote Control"
+    }
+]
