@@ -18,7 +18,7 @@ const PopularToys = () => {
                 <SectionTitle classes='text-center' subTitle='Popular Toys' title='Our Most Loved Toys'></SectionTitle>
 
                 <div>
-                    <div className='flex flex-wrap -mx-3'>
+                    <div className='flex flex-wrap -mx-2'>
                         {
                             toys.map((toy) => {
                                 return (

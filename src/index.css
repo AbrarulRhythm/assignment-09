@@ -19,6 +19,9 @@
   --color-dark-1: #333333;
   --color-dark-2: #7D7D7D;
   --color-dark-3: #DFE0E4;
+
+  /* Shadow */
+  --shadow-btn-inner: inset 0px 0px 122px rgba(0, 0, 0, 0.22);
 }
 
 html,
@@ -145,8 +148,8 @@ p {
 }
 
 .availableQuantity div:not(:last-child):after {
-  margin-left: 12px;
-  margin-right: 13px;
+  margin-left: 8px;
+  margin-right: 9px;
   display: inline-block;
   content: "";
   width: 5px;
@@ -157,7 +160,7 @@ p {
 }
 
 .sign-in-with {
-  @apply relative before:content-[''] before:w-[18%] before:h-[1px] before:absolute before:top-[50%] before:bg-dark-3 before:ml-[-20%] after:content-[''] after:w-[18%] after:h-[1px] after:absolute after:top-[50%] after:bg-dark-3 after:ml-[2%]
+  @apply relative before:content-[''] before:w-[18%] before:h-px before:absolute before:top-[50%] before:bg-dark-3 before:ml-[-20%] after:content-[''] after:w-[18%] after:h-px after:absolute after:top-[50%] after:bg-dark-3 after:ml-[2%]
 }
 
 .checkbox:checked {
