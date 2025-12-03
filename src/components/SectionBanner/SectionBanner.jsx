@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router';
 
 const SectionBanner = ({ link, title }) => {
     return (
-        <section className='section-banner py-14 md:py-[90px] lg:py-[120px] bg-[#95B3E0]'>
+        <section className='section-banner py-14 md:py-[90px] lg:py-[120px] bg-[#95B3E0] mt-[84px] md:mt-[108px]'>
             <div className='container'>
                 <div className='text-center'>
                     <h1 className='text-5xl md:text-6xl lg:text-[90px] font-bold mb-4 text-white'>{title}</h1>

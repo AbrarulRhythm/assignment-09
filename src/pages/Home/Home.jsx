@@ -47,7 +47,7 @@ const slideData = [
 const Home = () => {
     return (
         <>
-            <section className='hero-section relative z-[-1]'>
+            <section className='hero-section relative z-[-1] pt-[84px] md:pt-[108px]'>
                 <Swiper
                     spaceBetween={30}
                     effect={'fade'}
@@ -67,7 +67,7 @@ const Home = () => {
                             return (
                                 <SwiperSlide key={index}>
                                     <div className={slide.bgColor}>
-                                        <div className='container text-white py-11'>
+                                        <div className='container text-white py-10'>
                                             <div className='flex flex-wrap -mx3 items-center'>
                                                 <div className='w-full lg:w-6/12 px-3 mb-6 lg:mb-0'>
                                                     <p className='subTitleOne text-base md:text-lg font-medium tracking-widest mb-2 md:mb-4'>{slide.subtitleOne}</p>

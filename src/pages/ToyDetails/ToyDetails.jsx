@@ -14,14 +14,14 @@ const ToyDetails = () => {
     }, [toyData, id]);
 
     return (
-        <div className='toy-details'>
+        <section className='toy-details pt-[84px] md:pt-[108px]'>
             <div className='container'>
                 <div className='py-14'>
                     <ToyDetailsCard toy={toy}></ToyDetailsCard>
                 </div>
                 <TryNowForm></TryNowForm>
             </div>
-        </div>
+        </section>
     );
 };
 

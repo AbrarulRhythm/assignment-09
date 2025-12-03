@@ -65,9 +65,7 @@ const BottomHeader = () => {
     // Sticky Navbar
     useEffect(() => {
         const handleScroll = () => {
-            // const triggerPoint = 64;
             const scroll = window.scrollY;
-            // setIsSticky(window.scrollY > triggerPoint);
 
             if (scroll >= 153) {
                 setNavStickyMovedUp(true);
