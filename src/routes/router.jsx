@@ -28,7 +28,7 @@ export const router = createBrowserRouter([
             {
                 path: 'product/:id',
                 loader: () => fetch('/toys.json'),
-                element: <PrivateRoute><ToyDetails></ToyDetails></PrivateRoute>
+                Component: ToyDetails
             },
             {
                 path: 'sign-in',

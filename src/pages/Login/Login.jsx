@@ -7,7 +7,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { toast } from 'react-toastify';
 
 const Login = () => {
-    const { signInUser } = use(AuthContext);
+    const { signInUser, googleSignIn } = use(AuthContext);
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
@@ -26,6 +26,19 @@ const Login = () => {
                 const user = result.user;
                 toast.success(`Sign In successful. Welcome back, ${user.displayName}!`)
                 navigate(`${location.state ? location.state : '/'}`);
+            })
+            .catch((error) => {
+                toast.error(error.message);
+            })
+    }
+
+    // Google Sign Up
+    const handleGoogleSignUp = () => {
+        googleSignIn()
+            .then((result) => {
+                const user = result.user;
+                toast.success(`Sign In successful. Welcome back, ${user.displayName}!`)
+                navigate(location?.state || '/');
             })
             .catch((error) => {
                 toast.error(error.message);
@@ -67,15 +80,17 @@ const Login = () => {
                             </form>
                             <div className='sign-in-with text-center mb-8 md:mb-10'>Or sign in with</div>
                             <div className='flex justify-center items-center gap-3 mb-8'>
-                                <div className='w-16 h-16 border border-dark-3 hover:border-primary-theme duration-300 rounded-full flex justify-center items-center text-3xl cursor-pointer'>
+                                <div
+                                    onClick={handleGoogleSignUp}
+                                    className='w-16 h-16 border border-dark-3 hover:border-primary-theme duration-300 rounded-full flex justify-center items-center text-3xl cursor-pointer'>
                                     <FcGoogle />
                                 </div>
-                                <div className='w-16 h-16 border border-dark-3 hover:border-primary-theme duration-300 rounded-full flex justify-center items-center text-3xl cursor-pointer'>
+                                {/* <div className='w-16 h-16 border border-dark-3 hover:border-primary-theme duration-300 rounded-full flex justify-center items-center text-3xl cursor-pointer'>
                                     <FaGithub />
-                                </div>
+                                </div> */}
                             </div>
                             <div className='text-center'>
-                                <p>Don't have an account? <Link to='/sign-up' className='text-primary-theme underline hover:text-primary-theme/80 duration-100 underline-offset-2'>Sign up</Link></p>
+                                <p>Don't have an account? <Link to='/sign-up' state={location.state} className='text-primary-theme underline hover:text-primary-theme/80 duration-100 underline-offset-2'>Sign up</Link></p>
                             </div>
                         </div>
                     </div>
