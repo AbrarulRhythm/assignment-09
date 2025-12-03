@@ -5,9 +5,12 @@ import { IoEyeOff } from 'react-icons/io5';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../../context/AuthContext';
 import { toast } from 'react-toastify';
+import axios from 'axios';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const Register = () => {
     const { setUser, createUser, updateUser, googleSignIn } = use(AuthContext);
+    const axiosSecure = useAxiosSecure();
     const [showPassword, setShowPassword] = useState(false);
     const [passwordError, setPasswordError] = useState('');
     const navigate = useNavigate();
@@ -20,7 +23,7 @@ const Register = () => {
         const form = event.target;
         const name = form.name.value;
         const email = form.email.value;
-        const userphotoURL = form.photoURL.value;
+        const userphotoURL = form.photoURL.files[0];;
         const password = form.password.value;
         const terms = form.terms.checked;
 
@@ -76,19 +79,43 @@ const Register = () => {
         createUser(email, password)
             .then((result) => {
                 const user = result.user;
-                event.target.reset(); // form reste
 
-                // Update User
-                updateUser({ displayName: name, photoURL: userphotoURL })
-                    .then(() => {
-                        setUser({ ...user, displayName: name, photoURL: userphotoURL });
-                        toast.success('Your account has been successfully created. 🎉');
-                        navigate('/');
-                    })
-                    .catch((error) => {
-                        const errorMessage = error.message;
-                        toast.error(errorMessage);
-                        setUser(user);
+                // Store the image and get the photo url
+                const formData = new FormData();
+                formData.append('image', userphotoURL);
+                const imageAPI_URL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_host_key}`;
+
+                axios.post(imageAPI_URL, formData)
+                    .then(res => {
+                        const photoURL = res.data.data.url;
+
+                        // Create user in the database
+                        const userInfo = {
+                            email: email,
+                            displayName: name,
+                            photoURL: photoURL
+                        }
+
+                        axiosSecure.post('/users', userInfo)
+                            .then(() => {
+                                // User created — no UI message needed
+                                // silently succeed  
+                            })
+
+                        // Update user profile to firebase
+                        updateUser({ displayName: name, photoURL: photoURL })
+                            .then(() => {
+                                event.target.reset(); // form reste
+                                setUser({ ...user, displayName: name, photoURL: photoURL });
+                                toast.success('Your account has been successfully created. 🎉');
+                                navigate('/');
+                            })
+                            .catch((error) => {
+                                const errorMessage = error.message;
+                                toast.error(errorMessage);
+                                setUser(user);
+                            })
+
                     })
             })
             .catch((error) => {
@@ -102,16 +129,33 @@ const Register = () => {
         googleSignIn()
             .then((result) => {
                 const user = result.user;
-                toast.success(`Welcome aboard, ${user.displayName}! 🎉 You've successfully signed up`);
-                navigate(location?.state || '/');
+
+                // Create user in the database
+                const userInfo = {
+                    email: user.email,
+                    displayName: user.displayName,
+                    photoURL: user.photoURL
+                }
+
+                axiosSecure.post('/users', userInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            toast.success(`Welcome aboard, ${user.displayName}! 🎉 You've successfully signed up`);
+                            navigate(location?.state || '/');
+                        }
+                        else {
+                            toast(res.data.message);
+                            navigate(location?.state || '/');
+                        }
+                    });
             })
             .catch((error) => {
                 toast.error(error.message);
-            })
+            });
     }
 
     return (
-        <section className='login py-10'>
+        <section className='login py-10 mt-[84px] md:-[108px]'>
             <title>Sign up for ToyTopia</title>
 
             <div className='container'>
@@ -123,14 +167,17 @@ const Register = () => {
                                 <p className='font-medium'>Fill your information below or register with your social account.</p>
                             </div>
                             <form onSubmit={handleRegister} className='mb-8 md:mb-10'>
+                                {/* Name */}
                                 <div className='mb-5'>
                                     <input type="text" name='name' className='w-full border border-dark-3 rounded-md py-5 px-6 focus:outline-0 focus:border-primary-theme' placeholder='Enter your name' required />
                                 </div>
+                                {/* Email */}
                                 <div className='mb-5'>
                                     <input type="email" name='email' className='w-full border border-dark-3 rounded-md py-5 px-6 focus:outline-0 focus:border-primary-theme' placeholder='Enter your email' required />
                                 </div>
+                                {/* Photo */}
                                 <div className='mb-5'>
-                                    <input type="text" name='photoURL' className='w-full border border-dark-3 rounded-md py-5 px-6 focus:outline-0 focus:border-primary-theme' placeholder='Enter your photo URL' required />
+                                    <input type="file" name='photoURL' className='w-full border border-dark-3 rounded-md py-5 px-6 focus:outline-0 focus:border-primary-theme' placeholder='Enter your photo URL' required />
                                 </div>
                                 <div className='mb-5'>
                                     <div className='relative'>

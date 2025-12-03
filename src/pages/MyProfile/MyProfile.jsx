@@ -39,7 +39,7 @@ const MyProfile = () => {
     }
 
     return (
-        <section className='py-10'>
+        <section className='py-10 mt-[84px] md:mt-[108px]'>
             <title>{user && user.displayName}</title>
 
             <div className='container'>

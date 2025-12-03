@@ -2,12 +2,14 @@ import React, { use, useRef, useState } from 'react';
 import { FaEye, FaGithub } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { IoEyeOff } from 'react-icons/io5';
-import { Link, Links, useLocation, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../../context/AuthContext';
 import { toast } from 'react-toastify';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const Login = () => {
     const { signInUser, googleSignIn } = use(AuthContext);
+    const axiosSecure = useAxiosSecure();
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
@@ -37,8 +39,25 @@ const Login = () => {
         googleSignIn()
             .then((result) => {
                 const user = result.user;
-                toast.success(`Sign In successful. Welcome back, ${user.displayName}!`)
-                navigate(location?.state || '/');
+
+                // Create user in the database
+                const userInfo = {
+                    email: user.email,
+                    displayName: user.displayName,
+                    photoURL: user.photoURL
+                }
+
+                axiosSecure.post('/users', userInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            toast.success(`Sign In successful. Welcome back, ${user.displayName}!`)
+                            navigate(location?.state || '/');
+                        }
+                        else {
+                            toast(res.data.message);
+                            navigate(location?.state || '/');
+                        }
+                    });
             })
             .catch((error) => {
                 toast.error(error.message);
@@ -52,7 +71,7 @@ const Login = () => {
     }
 
     return (
-        <section className='login py-10'>
+        <section className='login py-10 mt-[84px] md:-[108px]'>
             <title>ToyTopia - log in or sign up</title>
 
             <div className='container'>
