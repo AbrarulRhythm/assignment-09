@@ -47,6 +47,7 @@ const slideData = [
 const Home = () => {
     return (
         <>
+            This is Hello
             <section className='hero-section relative z-[-1]'>
                 <Swiper
                     spaceBetween={30}
