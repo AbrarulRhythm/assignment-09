@@ -10,6 +10,9 @@ import { PiSignOutBold } from 'react-icons/pi';
 const BottomHeader = () => {
     const { user, userSignOut } = use(AuthContext);
     const [openMenu, setOpenMenu] = useState(false);
+    const [navStickyMovedUp, setNavStickyMovedUp] = useState(false);
+    const [stickyNavTransition, setStickyNavTransition] = useState(false);
+    const [isSticky, setIsSticky] = useState(false);
     const menuRef = useRef(null);
 
     const links = <>
@@ -44,6 +47,7 @@ const BottomHeader = () => {
             })
     }
 
+    // Profile Menu
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -58,8 +62,47 @@ const BottomHeader = () => {
         }
     }, []);
 
+    // Sticky Navbar
+    useEffect(() => {
+        const handleScroll = () => {
+            // const triggerPoint = 64;
+            const scroll = window.scrollY;
+            // setIsSticky(window.scrollY > triggerPoint);
+
+            if (scroll >= 153) {
+                setNavStickyMovedUp(true);
+            }
+            else {
+                setNavStickyMovedUp(false);
+            }
+
+            // Apply Transition
+            if (scroll >= 250) {
+                setStickyNavTransition(true);
+            }
+            else {
+                setStickyNavTransition(false);
+            }
+
+            // Sticky On
+            if (scroll >= 500) {
+                setIsSticky(true);
+            }
+            else {
+                setIsSticky(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     return (
-        <div className='bottom-header'>
+        <div className={`
+            ${navStickyMovedUp ? 'fixed top-0 -mt-[108px]' : 'absolute'}
+            ${stickyNavTransition ? 'duration-500' : ''}
+            ${isSticky ? 'mt-0 duration-500 shadow-md' : ''}
+         left-0 right-0  bottom-header bg-white z-50`}>
             <div className='container'>
                 <div className="navbar px-0 py-5 md:py-6">
                     <div className="navbar-start">
