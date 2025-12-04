@@ -13,6 +13,7 @@ import { Link } from 'react-router';
 import PopularToys from '../../components/PopularToys/PopularToys';
 import WhoWeAre from '../../components/WhoWeAre/WhoWeAre';
 import LatestBlog from '../../components/LatestBlog/LatestBlog';
+import OurPartners from '../../components/OurPartners/OurPartners';
 
 const slideData = [
     {
@@ -92,6 +93,7 @@ const Home = () => {
             <WhoWeAre></WhoWeAre>
             <PopularToys></PopularToys>
             <LatestBlog></LatestBlog>
+            <OurPartners></OurPartners>
         </>
     );
 };

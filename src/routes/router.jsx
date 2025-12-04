@@ -14,6 +14,7 @@ import Shop from "../pages/Shop/Shop";
 import Product from "../pages/Product/Product";
 import Blog from "../pages/Blog/Blog";
 import ContactUs from "../pages/ContactUs/ContactUs";
+import AddProduct from "../pages/AddProduct/AddProduct";
 
 export const router = createBrowserRouter([
     {
@@ -27,7 +28,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'product/:id',
-                loader: () => fetch('/toys.json'),
+                loader: () => fetch('/all-toys.json'),
                 Component: ToyDetails
             },
             {
@@ -52,6 +53,10 @@ export const router = createBrowserRouter([
                 element: <PrivateRoute><Wishlist></Wishlist></PrivateRoute>
             },
             {
+                path: 'add-product',
+                element: <PrivateRoute><AddProduct></AddProduct></PrivateRoute>
+            },
+            {
                 path: 'about-us',
                 Component: About
             },
@@ -61,6 +66,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'product',
+                loader: () => fetch('/all-toys.json'),
                 Component: Product
             },
             {

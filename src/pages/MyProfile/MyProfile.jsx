@@ -52,7 +52,7 @@ const MyProfile = () => {
                     <div className='w-full md:w-6/12 lg:w-4/12 mb-8 px-3'>
                         <h2 className='text-3xl md:text-4xl font-bold text-dark-1 mb-3'>{user && user.displayName}</h2>
                         <h5 className='text-lg font-medium mb-2'>{user && user.email}</h5>
-                        <p className='text-[12px] font-normal mb-6 break-words'><span className='font-medium text-sm'>URL:</span> {user && user.photoURL}</p>
+                        <p className='text-[12px] font-normal mb-6 break-word'><span className='font-medium text-sm'>URL:</span> {user && user.photoURL}</p>
                         <ul className='flex items-center gap-6 text-lg'>
                             <li><FaFacebookF /></li>
                             <li><FaXTwitter /></li>

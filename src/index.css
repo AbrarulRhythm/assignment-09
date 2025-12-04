@@ -198,3 +198,28 @@ p {
 .blog-meta li:not(:last-child)::after {
   @apply content-[''] w-1.5 h-1.5 bg-gray-400 rounded-full align-middle ml-4 mr-4 inline-block
 }
+
+.form-field {
+  @apply border w-full py-3 px-5 rounded-md focus:outline-0;
+}
+
+.form-field-border {
+  @apply text-dark-2 border-[#CBD5E1] focus:border-primary-theme;
+}
+
+.form-field-error {
+  @apply border-red-500 text-red-500 focus:border-red-500;
+}
+
+/* [ OurPartners ] */
+/*================================================== */
+.rfm-marquee-container,
+.rfm-marquee,
+.rfm-initial-child-container {
+  @apply gap-14
+}
+
+.rfm-marquee img,
+.rfm-initial-child-container img {
+  @apply saturate-[0] hover:saturate-100 duration-300
+}

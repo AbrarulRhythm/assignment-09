@@ -1,11 +1,11 @@
 import React, { use, useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router';
 import logo from '../../assets/logo.png';
-import { IoClose, IoMenu } from 'react-icons/io5';
 import { AuthContext } from '../../context/AuthContext';
 import { toast } from 'react-toastify';
 import { FaRegHeart, FaRegUser } from 'react-icons/fa';
 import { PiSignOutBold } from 'react-icons/pi';
+import { MdAdd } from "react-icons/md";
 
 const BottomHeader = () => {
     const { user, userSignOut } = use(AuthContext);
@@ -136,7 +136,7 @@ const BottomHeader = () => {
                                                 setOpenMenu(!openMenu)
                                             }}
                                             className='user-image tooltip tooltip-left' data-tip={`${user && user.displayName}`}>
-                                            <img className='w-[54px] h-[54px] object-cover rounded-full border-2 border-primary-theme' src={`${user && user.photoURL}`} alt='User Profile Image' />
+                                            <img className='w-[54px] h-[54px] object-cover rounded-full border-2 border-primary-theme bg-gray-300' src={`${user && user.photoURL}`} />
                                         </div>
 
                                         <div className={`${openMenu ? 'opacity-100 visible translate-y-0 duration-300' : 'opacity-0 invisible duration-300 -translate-y-3'} absolute top-[76px] right-0 w-[291px] h-auto bg-white border border-dark-3 text-sm rounded-md text-dark-2 before:content-[''] before:w-6 before:h-6  before:absolute before:-top-3 before:right-3.5 before:bg-white before:rotate-45 before:rounded-tl-sm before:border-t before:border-l before:border-dark-3`}>
@@ -150,9 +150,14 @@ const BottomHeader = () => {
                                                         <FaRegUser /> Profile
                                                     </Link>
                                                 </li>
+                                                {/* <li>
+                                                    <Link to='/add-product' className='flex items-center gap-2 py-2 px-4 hover:bg-gray-200 duration-200'>
+                                                        <MdAdd className='text-lg' /> Add Product
+                                                    </Link>
+                                                </li> */}
                                                 <li>
                                                     <Link to='/wishlist' className='flex items-center gap-2 py-2 px-4 hover:bg-gray-200 duration-200'>
-                                                        <FaRegHeart /> Your Wishlist
+                                                        <FaRegHeart /> My Wishlist
                                                     </Link>
                                                 </li>
                                             </ul>

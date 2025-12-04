@@ -30,7 +30,7 @@ const ForgotPassword = () => {
     }
 
     return (
-        <section className='login py-10'>
+        <section className='login py-10 mt-[84px] md:mt-[108px]'>
             <title>Reset Password - ToyTopia</title>
 
             <div className='container'>

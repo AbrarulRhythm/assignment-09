@@ -31,7 +31,7 @@ const PopularToys = () => {
                         }
                     </div>
                     <div className='text-center mt-6'>
-                        <Link to='/' className='inline-block text-white py-3 px-10 rounded-md bg-primary-theme hover:bg-primary-theme-dark duration-300'>View All Toys</Link>
+                        <Link to='/product' className='inline-block text-white py-3 px-10 rounded-md bg-primary-theme hover:bg-primary-theme-dark duration-300'>View All Toys</Link>
                     </div>
                 </div>
             </div>
