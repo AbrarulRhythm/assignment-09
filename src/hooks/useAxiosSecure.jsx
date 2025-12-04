@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:3000'
+    baseURL: 'https://toy-topia-api-server.vercel.app/'
 });
 
 const useAxiosSecure = () => {
